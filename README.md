@@ -12,34 +12,63 @@ Modern product-focused rebuild of `www.robotro.com` centered on JS-R7 servo moto
 
 ## Local Development Setup
 
+Recommended local workflow:
+
+- Run the frontend directly with Node 24 for fast Next.js development.
+- Run PostgreSQL and Django with Docker Compose when API/Admin data is needed.
+
 1. Copy environment variables:
 
 ```bash
 cp .env.example .env
+cp frontend/.env.local.example frontend/.env.local
 ```
 
-2. Build and start services:
+2. Use Node 24 for frontend work:
 
 ```bash
-docker compose up -d --build
+cd frontend
+nvm install
+nvm use
+npm install
+npm run dev
 ```
 
-3. Run backend migrations:
+If you do not use `nvm`, install Node 24 with your preferred version manager and confirm:
+
+```bash
+node --version
+npm --version
+```
+
+3. Start backend services when the real API/Admin is needed:
+
+```bash
+docker compose up -d db backend
+```
+
+4. Run backend migrations:
 
 ```bash
 docker compose exec backend python manage.py migrate
 ```
 
-4. Seed initial ROBOTRO content:
+5. Seed initial ROBOTRO content:
 
 ```bash
 docker compose exec backend python manage.py seed_initial_data
 ```
 
-5. Create a Django admin user:
+6. Create a Django admin user:
 
 ```bash
 docker compose exec backend python manage.py createsuperuser
+```
+
+For a full Docker smoke test, including the frontend container:
+
+```bash
+docker compose up -d --build
 ```
 
 ## Service URLs

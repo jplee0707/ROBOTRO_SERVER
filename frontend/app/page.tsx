@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { Factory, Headphones, MonitorCog, PackageCheck, type LucideIcon } from "lucide-react";
 import { ApplicationCard } from "@/components/ApplicationCard";
 import { Hero } from "@/components/Hero";
@@ -129,9 +130,9 @@ export default async function HomePage() {
             <h2>Need a custom servo or motor driver solution?</h2>
             <p>제품 선정, 수량, 적용 메커니즘을 알려주시면 개발 방향을 함께 검토합니다.</p>
           </div>
-          <Link className="button primary" href="/quote">
-            Request Quote
-          </Link>
+          <Button asChild>
+            <Link href="/quote">Request Quote</Link>
+          </Button>
         </div>
       </section>
     </>

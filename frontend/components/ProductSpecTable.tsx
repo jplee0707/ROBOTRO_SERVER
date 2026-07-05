@@ -1,3 +1,5 @@
+import { Table, TableBody, TableCell, TableHead, TableRow } from "@/components/ui/table";
+
 type ProductSpecTableProps = {
   specs: Record<string, string>;
 };
@@ -5,16 +7,18 @@ type ProductSpecTableProps = {
 export function ProductSpecTable({ specs }: ProductSpecTableProps) {
   return (
     <div className="table-wrap">
-      <table className="spec-table">
-        <tbody>
+      <Table className="min-w-[520px]">
+        <TableBody>
           {Object.entries(specs).map(([label, value]) => (
-            <tr key={label}>
-              <th scope="row">{label}</th>
-              <td>{value}</td>
-            </tr>
+            <TableRow key={label}>
+              <TableHead scope="row" className="w-[34%]">
+                {label}
+              </TableHead>
+              <TableCell>{value}</TableCell>
+            </TableRow>
           ))}
-        </tbody>
-      </table>
+        </TableBody>
+      </Table>
     </div>
   );
 }

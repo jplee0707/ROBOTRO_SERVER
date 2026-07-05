@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { ProductSpecTable } from "@/components/ProductSpecTable";
 import { ResourceCard } from "@/components/ResourceCard";
 import { SectionTitle } from "@/components/SectionTitle";
@@ -94,9 +95,9 @@ export default async function JsR7Page() {
             <h2>JS-R7 적용 검토가 필요하신가요?</h2>
             <p>소형 로봇 관절, 교육용 로봇, 델타로봇 구동 예시, 휴머노이드 관절 예시를 함께 검토합니다.</p>
           </div>
-          <Link className="button primary" href="/quote">
-            Request Quote
-          </Link>
+          <Button asChild>
+            <Link href="/quote">Request Quote</Link>
+          </Button>
         </div>
       </section>
     </>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Cpu, Menu } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const productLinks = [
   { href: "/products/js-r7", label: "JS-R7 Servo Motor" },
@@ -33,12 +34,12 @@ export function Header() {
         <Link href="/support">Support</Link>
         <Link href="/company">Company</Link>
       </nav>
-      <Link className="quote-link" href="/quote">
-        Quote Request
-      </Link>
-      <button className="mobile-menu" type="button" aria-label="Open navigation">
+      <Button asChild className="hidden lg:inline-flex">
+        <Link href="/quote">Quote Request</Link>
+      </Button>
+      <Button className="ml-auto lg:hidden" variant="outline" size="icon" type="button" aria-label="Open navigation">
         <Menu size={22} />
-      </button>
+      </Button>
     </header>
   );
 }

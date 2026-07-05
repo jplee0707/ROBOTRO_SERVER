@@ -1,5 +1,4 @@
 import { ProductCard } from "@/components/ProductCard";
-import { SectionTitle } from "@/components/SectionTitle";
 
 const products = [
   {
