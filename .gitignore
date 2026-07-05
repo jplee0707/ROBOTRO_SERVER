@@ -12,4 +12,3 @@ backend/staticfiles/
 backend/media/
 
 .DS_Store
-docker-compose.yml
