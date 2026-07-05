@@ -1,0 +1,13 @@
+{
+  "remote.autoForwardPorts": true,
+  "remote.portsAttributes": {
+    "3000": {
+      "label": "ROBOTRO Frontend",
+      "onAutoForward": "openBrowser"
+    },
+    "8000": {
+      "label": "ROBOTRO Backend API",
+      "onAutoForward": "notify"
+    }
+  }
+}
