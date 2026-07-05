@@ -3,6 +3,7 @@ docker-compose.yml
 *.pyc
 __pycache__/
 .pytest_cache/
+.vscode/settings.json
 
 frontend/node_modules/
 frontend/.next/
