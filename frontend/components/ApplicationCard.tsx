@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { Move3D } from "lucide-react";
+import { ArrowRight, Move3D } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 type ApplicationCardProps = {
   title: string;
@@ -9,11 +11,22 @@ type ApplicationCardProps = {
 
 export function ApplicationCard({ title, description, href = "/applications" }: ApplicationCardProps) {
   return (
-    <article className="application-card">
-      <Move3D size={24} />
-      <h3>{title}</h3>
-      <p>{description}</p>
-      <Link href={href}>Example detail</Link>
-    </article>
+    <Card>
+      <CardHeader>
+        <Move3D className="text-primary" size={24} />
+        <CardTitle>{title}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <CardDescription>{description}</CardDescription>
+      </CardContent>
+      <CardFooter>
+        <Button asChild variant="link">
+          <Link href={href}>
+            Example detail
+            <ArrowRight size={16} />
+          </Link>
+        </Button>
+      </CardFooter>
+    </Card>
   );
 }

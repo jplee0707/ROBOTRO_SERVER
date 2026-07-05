@@ -1,15 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  --ink: #0b1320;
-  --navy: #101b2d;
-  --panel: #172338;
+  --ink: #020817;
+  --navy: #020817;
+  --panel: #0f172a;
   --muted: #64748b;
-  --line: #d8dee8;
-  --soft: #f4f7fb;
-  --blue: #1269ff;
-  --blue-dark: #0d4dbb;
+  --line: #e2e8f0;
+  --soft: #f8fafc;
+  --blue: #020817;
+  --blue-dark: #1e293b;
   --white: #ffffff;
-  --success: #0f766e;
-  --error: #b42318;
+  --success: #16a34a;
+  --error: #dc2626;
+
+  --background: #ffffff;
+  --foreground: #020817;
+  --card: #ffffff;
+  --card-foreground: #020817;
+  --primary: #020817;
+  --primary-foreground: #f8fafc;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+  --muted-token: #f1f5f9;
+  --muted-foreground: #64748b;
+  --border-token: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #020817;
 }
 
 * {
@@ -76,10 +94,10 @@ main {
   place-items: center;
   width: 40px;
   height: 40px;
-  border: 1px solid rgba(18, 105, 255, 0.25);
+  border: 1px solid var(--line);
   border-radius: 8px;
-  color: var(--blue);
-  background: #eef5ff;
+  color: var(--foreground);
+  background: var(--soft);
 }
 
 .desktop-nav {
@@ -204,7 +222,7 @@ main {
 
 .eyebrow {
   margin: 0 0 14px;
-  color: var(--blue);
+  color: var(--primary);
   font-size: 0.78rem;
   font-weight: 900;
   text-transform: uppercase;
@@ -346,20 +364,20 @@ main {
   align-items: center;
   gap: 8px;
   margin-top: 12px;
-  color: var(--blue);
+  color: var(--primary);
   font-weight: 800;
 }
 
 .card-meta {
   margin: 18px 0 0;
-  color: var(--blue) !important;
+  color: var(--foreground) !important;
   font-size: 0.78rem;
   font-weight: 900;
   text-transform: uppercase;
 }
 
 .application-card svg {
-  color: var(--blue);
+  color: var(--primary);
 }
 
 .resource-head {
@@ -367,7 +385,7 @@ main {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  color: var(--blue);
+  color: var(--primary);
   font-size: 0.78rem;
   font-weight: 900;
   text-transform: uppercase;

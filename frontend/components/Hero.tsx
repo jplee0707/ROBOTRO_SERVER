@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 type HeroProps = {
   eyebrow?: string;
@@ -36,20 +37,27 @@ export function Hero({
         <p className="hero-subtitle">{subtitle}</p>
         <div className="hero-actions">
           {primaryCta && (
-            <Link className="button primary" href={primaryCta.href}>
-              {primaryCta.label}
-              <ArrowRight size={18} />
-            </Link>
+            <Button asChild size="lg">
+              <Link href={primaryCta.href}>
+                {primaryCta.label}
+                <ArrowRight size={18} />
+              </Link>
+            </Button>
           )}
           {secondaryCta && (
-            <Link className="button secondary" href={secondaryCta.href}>
-              {secondaryCta.label}
-            </Link>
+            <Button asChild variant="secondary" size="lg">
+              <Link href={secondaryCta.href}>{secondaryCta.label}</Link>
+            </Button>
           )}
           {tertiaryCta && (
-            <Link className="button ghost" href={tertiaryCta.href}>
-              {tertiaryCta.label}
-            </Link>
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="border-white/60 bg-transparent text-white hover:bg-white/10 hover:text-white"
+            >
+              <Link href={tertiaryCta.href}>{tertiaryCta.label}</Link>
+            </Button>
           )}
         </div>
       </div>

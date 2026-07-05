@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/ProductCard";
 import { ResourceCard } from "@/components/ResourceCard";
 import { SectionTitle } from "@/components/SectionTitle";
@@ -83,9 +84,9 @@ export default async function MotorDriversPage() {
             <h2>드라이버 통합 조건을 검토해 드립니다.</h2>
             <p>전원, 제어 방식, 배선, 수량, 장착 환경을 알려주세요.</p>
           </div>
-          <Link className="button primary" href="/quote">
-            Request Quote
-          </Link>
+          <Button asChild>
+            <Link href="/quote">Request Quote</Link>
+          </Button>
         </div>
       </section>
     </>

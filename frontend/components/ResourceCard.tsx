@@ -1,4 +1,6 @@
 import { Download, FileText } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 type ResourceCardProps = {
   title: string;
@@ -12,31 +14,46 @@ type ResourceCardProps = {
 
 export function ResourceCard({ title, product, category, description, version, date, href }: ResourceCardProps) {
   return (
-    <article className="resource-card">
-      <div className="resource-head">
-        <FileText size={22} />
-        <span>{category}</span>
-      </div>
-      <h3>{title}</h3>
-      <p>{description}</p>
-      <dl>
-        <div>
-          <dt>Product</dt>
-          <dd>{product}</dd>
+    <Card>
+      <CardHeader>
+        <div className="resource-head">
+          <FileText size={22} />
+          <span>{category}</span>
         </div>
-        <div>
-          <dt>Version</dt>
-          <dd>{version}</dd>
-        </div>
-        <div>
-          <dt>Date</dt>
-          <dd>{date}</dd>
-        </div>
-      </dl>
-      <a className="download-link" href={href || "#"} aria-disabled={!href}>
-        <Download size={16} />
-        Download
-      </a>
-    </article>
+        <CardTitle>{title}</CardTitle>
+      </CardHeader>
+      <CardContent className="grid gap-4">
+        <CardDescription>{description}</CardDescription>
+        <dl className="grid gap-2 text-sm text-muted-foreground">
+          <div className="flex justify-between gap-3 border-t border-border pt-2">
+            <dt className="font-extrabold text-foreground">Product</dt>
+            <dd className="m-0 text-right">{product}</dd>
+          </div>
+          <div className="flex justify-between gap-3 border-t border-border pt-2">
+            <dt className="font-extrabold text-foreground">Version</dt>
+            <dd className="m-0 text-right">{version}</dd>
+          </div>
+          <div className="flex justify-between gap-3 border-t border-border pt-2">
+            <dt className="font-extrabold text-foreground">Date</dt>
+            <dd className="m-0 text-right">{date}</dd>
+          </div>
+        </dl>
+      </CardContent>
+      <CardFooter>
+        {href ? (
+          <Button asChild variant="link">
+            <a href={href}>
+              <Download size={16} />
+              Download
+            </a>
+          </Button>
+        ) : (
+          <Button variant="link" disabled>
+            <Download size={16} />
+            Download
+          </Button>
+        )}
+      </CardFooter>
+    </Card>
   );
 }
