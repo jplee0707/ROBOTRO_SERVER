@@ -6,7 +6,6 @@ RUN npm ci
 FROM node:24-alpine AS dev
 WORKDIR /app
 ENV HOSTNAME=0.0.0.0
-ENV NODE_ENV=development
 ENV PORT=3000
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
