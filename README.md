@@ -14,69 +14,60 @@ Modern product-focused rebuild of `www.robotro.com` centered on JS-R7 servo moto
 
 Recommended local workflow:
 
-- Run the frontend directly with Node 24 for fast Next.js development.
-- Run PostgreSQL and Django with Docker Compose when API/Admin data is needed.
+- Run PostgreSQL, Django, and the Next.js frontend with Docker Compose.
+- Let the frontend image install npm dependencies and run `npm run dev` inside Docker.
+- Keep frontend dependencies in Docker volumes instead of `frontend/node_modules`. The frontend container runs `npm ci` before starting dev mode and bind-mounts only source/config files.
+- Use local host ports `3100`, `8100`, and `5434` to avoid colliding with another main server.
+- Use `COMPOSE_PROJECT_NAME=robotro_je` so this developer stack stays separate from admin `robotro_server` and the other developer `robotro_jp`.
 
 1. Copy environment variables:
 
 ```bash
 cp .env.example .env
-cp frontend/.env.local.example frontend/.env.local
 ```
 
-2. Use Node 24 for frontend work:
-
-```bash
-cd frontend
-nvm install
-nvm use
-npm install
-npm run dev
-```
-
-If you do not use `nvm`, install Node 24 with your preferred version manager and confirm:
-
-```bash
-node --version
-npm --version
-```
-
-3. Start backend services when the real API/Admin is needed:
-
-```bash
-docker compose up -d db backend
-```
-
-4. Run backend migrations:
-
-```bash
-docker compose exec backend python manage.py migrate
-```
-
-5. Seed initial ROBOTRO content:
-
-```bash
-docker compose exec backend python manage.py seed_initial_data
-```
-
-6. Create a Django admin user:
-
-```bash
-docker compose exec backend python manage.py createsuperuser
-```
-
-For a full Docker smoke test, including the frontend container:
+2. Start the full stack:
 
 ```bash
 docker compose up -d --build
 ```
 
+3. Run backend migrations:
+
+```bash
+docker compose exec backend python manage.py migrate
+```
+
+4. Seed initial ROBOTRO content:
+
+```bash
+docker compose exec backend python manage.py seed_initial_data
+```
+
+5. Create a Django admin user:
+
+```bash
+docker compose exec backend python manage.py createsuperuser
+```
+
+Run frontend npm commands inside the container when needed:
+
+```bash
+docker compose exec frontend npm run lint
+```
+
+Rebuild the frontend image after dependency changes:
+
+```bash
+docker compose build frontend
+```
+
 ## Service URLs
 
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:8000/api
-- Django Admin: http://localhost:8000/admin
-- Health check: http://localhost:8000/api/health/
+- Frontend: http://localhost:3100
+- Backend API: http://localhost:8100/api
+- Django Admin: http://localhost:8100/admin
+- Health check: http://localhost:8100/api/health/
 
 ## Backend Migration Commands
 
@@ -103,10 +94,13 @@ Products, resources, inquiries, and application examples are managed through Dja
 The frontend reads:
 
 ```env
-NEXT_PUBLIC_API_BASE_URL=http://localhost:8000/api
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8100/api
+API_INTERNAL_BASE_URL=http://backend:8000/api
 ```
 
-If the API is unavailable during local preview, the frontend uses launch-safe fallback content for product and resource pages.
+`NEXT_PUBLIC_API_BASE_URL` is the browser-facing URL. `API_INTERNAL_BASE_URL` is used by server-rendered frontend code inside Docker.
+
+If the API is unavailable during preview, the frontend uses launch-safe fallback content for product and resource pages.
 
 ## Deployment Notes
 
