@@ -85,7 +85,7 @@ export default async function MotorDriversPage() {
             <p>전원, 제어 방식, 배선, 수량, 장착 환경을 알려주세요.</p>
           </div>
           <Button asChild>
-            <Link href="/quote">Request Quote</Link>
+            <Link href="/inquiry">Request Quote</Link>
           </Button>
         </div>
       </section>

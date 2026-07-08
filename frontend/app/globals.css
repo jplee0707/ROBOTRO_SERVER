@@ -103,43 +103,10 @@ main {
 .desktop-nav {
   display: flex;
   align-items: center;
-  gap: 22px;
   margin-left: auto;
   color: #27364b;
   font-size: 0.95rem;
   font-weight: 700;
-}
-
-.nav-group {
-  position: relative;
-  padding: 24px 0;
-}
-
-.nav-menu {
-  position: absolute;
-  top: 60px;
-  left: -18px;
-  display: none;
-  min-width: 230px;
-  padding: 10px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--white);
-  box-shadow: 0 20px 45px rgba(10, 20, 35, 0.13);
-}
-
-.nav-group:hover .nav-menu {
-  display: grid;
-}
-
-.nav-menu a {
-  padding: 10px 12px;
-  border-radius: 6px;
-  color: #253246;
-}
-
-.nav-menu a:hover {
-  background: var(--soft);
 }
 
 .quote-link,
