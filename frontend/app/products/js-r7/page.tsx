@@ -1,8 +1,4 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { ProductSpecTable } from "@/components/ProductSpecTable";
-import { ResourceCard } from "@/components/ResourceCard";
-import { SectionTitle } from "@/components/SectionTitle";
+
 import { getProduct, getResources } from "@/lib/api";
 
 const features = [
