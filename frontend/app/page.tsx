@@ -43,7 +43,7 @@ export default async function HomePage() {
         subtitle="ROBOTRO develops compact actuator systems, motor drivers, firmware, and control tools for custom robotics applications."
         primaryCta={{ href: "/products/js-r7", label: "View JS-R7" }}
         secondaryCta={{ href: "/products/motor-drivers", label: "View Motor Drivers" }}
-        tertiaryCta={{ href: "/quote", label: "Request Quote" }}
+        tertiaryCta={{ href: "/inquiry", label: "Request Quote" }}
       />
 
       <section className="section">
@@ -131,7 +131,7 @@ export default async function HomePage() {
             <p>제품 선정, 수량, 적용 메커니즘을 알려주시면 개발 방향을 함께 검토합니다.</p>
           </div>
           <Button asChild>
-            <Link href="/quote">Request Quote</Link>
+            <Link href="/inquiry">Request Quote</Link>
           </Button>
         </div>
       </section>

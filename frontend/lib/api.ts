@@ -1,10 +1,18 @@
 import type { ApplicationExample, InquiryPayload, Product, Resource } from "./types";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000/api";
+const PUBLIC_API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8100/api";
+
+function getApiBaseUrl() {
+  if (typeof window === "undefined") {
+    return process.env.API_INTERNAL_BASE_URL || PUBLIC_API_BASE_URL;
+  }
+
+  return PUBLIC_API_BASE_URL;
+}
 
 async function fetchJson<T>(path: string): Promise<T | null> {
   try {
-    const response = await fetch(`${API_BASE_URL}${path}`, {
+    const response = await fetch(`${getApiBaseUrl()}${path}`, {
       next: { revalidate: 60 },
     });
 
@@ -36,7 +44,7 @@ export async function getApplications() {
 }
 
 export async function submitInquiry(payload: InquiryPayload) {
-  const response = await fetch(`${API_BASE_URL}/inquiries/`, {
+  const response = await fetch(`${getApiBaseUrl()}/inquiries/`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
